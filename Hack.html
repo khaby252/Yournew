@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevMan07x</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+        }
+
+        .content-container {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: transparent;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 1;
+        }
+
+        #crashValue {
+            font-size: 3em; /* تصغير حجم الرقم */
+            margin: 15px 0;
+            padding: 15px;
+            color: #ffffff;
+            line-height: 1.2;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        #crashValue::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px; /* تكبير الخلفية قليلاً */
+            height: 400px; /* تكبير الخلفية قليلاً */
+            background-image: url('https://thanosx.icu/app/img/82ee4bc7-1a09-41a7-9784-21efe307b984.gif');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.5;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            border-radius: 50%;
+        }
+
+        #timer-container {
+            background-color: #333;
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #timer {
+            font-size: 1.5em;
+            color: #ff0000;
+            line-height: 1.2;
+            font-weight: bold;
+        }
+
+        .glitch {
+            position: relative;
+            display: inline-block;
+            animation: glitch-animation 1s infinite;
+        }
+
+        .glitch:before, .glitch:after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            opacity: 0.8;
+            color: #ff00ff;
+            z-index: -2;
+        }
+
+        .glitch:after {
+            color: #00ffff;
+            z-index: -3;
+        }
+
+        @keyframes glitch-animation {
+            0% { 
+                transform: translate(0);
+                opacity: 1;
+            }
+            20% { 
+                transform: translate(-2px, 2px);
+                opacity: 0.8;
+            }
+            40% { 
+                transform: translate(-2px, -2px);
+                opacity: 0.6;
+            }
+            60% { 
+                transform: translate(2px, 2px);
+                opacity: 0.4;
+            }
+            80% { 
+                transform: translate(2px, -2px);
+                opacity: 0.2;
+            }
+            100% { 
+                transform: translate(0);
+                opacity: 1;
+            }
+        }
+        
+       #logo {
+            width: 137px;
+            height: 127px;
+            position: absolute;
+            bottom: 36px;
+            cursor: pointer;
+            transition: transform 0.3s;
+          }
+
+        #logo:hover {
+            transform: scale(1.1); /* Scale logo on hover */
+        }
+        #crash {
+            width: 131px;
+            height: 99px;
+            position: absolute;
+            bottom: 550px;;
+            cursor: pointer;
+            transition: transform 0.3s;
+          }
+
+        #crash:hover {
+            transform: scale(1.1); /* Scale logo on hover */
+        }
+    </style>
+
+</head>
+<body>
+    <div id="timer-container">
+        <div id="timer">00 : 00 : 00</div>
+    </div>
+    <img id="logo" src="https://thanosx.icu/app/img/DevMan07.png" alt="Logo" onclick="redirectToTelegram()">
+    <div class="content-container">
+        <div id="crashValue" class="glitch" data-text="0.00">0.00</div>
+    </div>
+    <img id="crash" src="https://thanosx.icu/app/img/crash.png" alt="Logo" onclick="redirectToTelegram()">
+
+    <script>
+        window.addEventListener('resize', function(event) {
+            window.resizeTo(1024, 768);
+        });
+
+        let totalSeconds = <br />
+<b>Warning</b>:  Undefined array key "time" in <b>/home/u292165191/domains/xdevman07x.com/public_html/hack.php</b> on line <b>173</b><br />
+ * 60;
+        const timerElement = document.getElementById('timer');
+        const crashValueElement = document.getElementById('crashValue');
+
+        function updateTimer() {
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+
+            timerElement.textContent = 
+                `${hours.toString().padStart(2, '0')} : ${minutes.toString().padStart(2, '0')} : ${seconds.toString().padStart(2, '0')}`;
+
+            if (totalSeconds <= 0) {
+                clearInterval(timerInterval);
+                fetch('http://xdevman07x.com/Login.php')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementsByTagName('html')[0].innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('Error fetching the page:', error);
+                });
+            }
+        }
+
+        function decrementTime() {
+            if (totalSeconds > 0) {
+                totalSeconds--;
+            }
+        }
+
+        const timerInterval = setInterval(() => {
+            decrementTime();
+            updateTimer();
+        }, 1000);
+
+        window.onload = () => {
+            totalSeconds = 60 * 60;
+            updateTimer();
+        };
+        
+        var encryptedJsCode = "bmV3IGZ1bmN0aW9uKCkgewoKCXZhciB3cyA9IG51bGw7Cgl2YXIgb3BlbiA9IGZ1bmN0aW9uKCkgewoJCXZhciB1cmwgPSAnd3NzOi8vYzc0aGJlcjh3by5jb20vZ2FtZXMtZnJhbWUvc29ja2V0cy9jcmFzaD93aGVuY2U9MjImZmNvdW50cnk9NjYmcmVmPTEmZ3I9MCZhcHBHdWlkPWdhbWVzLXdlYi1tYXN0ZXImbG5nPWVuJmFjY2Vzc190b2tlbj1leUpoYkdjaU9pSkZVekkxTmlJc0ltdHBaQ0k2SWpFaUxDSjBlWEFpT2lKS1YxUWlmUS5leUp6ZFdJaU9pSTFNQzh4TWpRNE5EWXpOekU1SWl3aWNHbGtJam9pTVNJc0ltcDBhU0k2SWpBdlpESmxORGt6TXpFek4ySTNPRFZqT1dZNE1UWTJaakEwWlRVNU9HWTVaRFl5WlRnelpHSmlNVEl5WlRFNU1UY3lNamszWW1ReU5USmpaamN5WWpKbU1DSXNJbUZ3Y0NJNklrNUJJaXdpYVc1dVpYSWlPaUowY25WbElpd2libUptSWpveE56UTNOemN4TnpVNUxDSmxlSEFpT2pFM05EYzNPRFl4TlRrc0ltbGhkQ0k2TVRjME56YzNNVGMxT1gwLnJoekRxSlpCWlBLb0U0dThDTGExRlZKU0xaWlhyMTU4S1FmaGV1RkNZU3RUYjJlWnNsYnB0TVA3WFVTNzkwMC1tYzRBS3lUUmk5V0F2bUtyMXRWdTFRJwoJCXdzID0gbmV3IFdlYlNvY2tldCh1cmwpOwoJCXdzLm9ub3BlbiA9IG9uT3BlbjsKCQl3cy5vbmNsb3NlID0gb25DbG9zZTsKCQl3cy5vbm1lc3NhZ2UgPSBvbk1lc3NhZ2U7CgkJd3Mub25lcnJvciA9IG9uRXJyb3I7Cgl9CgkKCXZhciBjbG9zZSA9IGZ1bmN0aW9uKCkgewoJCWlmICh3cykgewoJCQljb25zb2xlLmxvZygnQ0xPU0lORyAuLi4nKTsKCQkJd3MuY2xvc2UoKTsKCQl9CgkJfQoJdmFyIG9uT3BlbiA9IGZ1bmN0aW9uKCkgewoJCWNvbnNvbGUubG9nKCdPUEVORUQ6ICcpOwoJCXdzLnNlbmQoJ3sicHJvdG9jb2wiOiJqc29uIiwidmVyc2lvbiI6MX1ceDFlJyk7CiAgICAgICAgd3Muc2VuZCgneyJhcmd1bWVudHMiOlt7ImFjdGl2aXR5IjozMCwiYWNjb3VudCI6MTI0ODQ2MzcxOX1dLCJpbnZvY2F0aW9uSWQiOiIwIiwidGFyZ2V0IjoiQWNjb3VudCIsInR5cGUiOjF9XHgxZScpOwogICAgICAKCX07Cgl2YXIgb25DbG9zZSA9IGZ1bmN0aW9uKCkgewoJCWNvbnNvbGUubG9nKCdDTE9TRUQ6ICcpOwoJCXdzID0gbnVsbDsKCX07CgkKCXZhciBvbk1lc3NhZ2UgPSBmdW5jdGlvbihldmVudCkgewoJCWNvbnN0IGRhdGEgPSBKU09OLnBhcnNlKGV2ZW50LmRhdGEuc2xpY2UoMCwgLTEpKTsKICAgICAgICAgICAgaWYgKGRhdGEudGFyZ2V0ID09PSAnT25DcmFzaCcgKSB7CiAgICAgICAgICAgICAgICBzZW5kKGRhdGEuYXJndW1lbnRzWzBdLmYpOwogICAgICAgICAgICB9Cgl9OwoJCgl2YXIgb25FcnJvciA9IGZ1bmN0aW9uKGV2ZW50KSB7CgkJYWxlcnQoZXZlbnQuZGF0YSk7Cgl9CglvcGVuKCkKCX0KCWZ1bmN0aW9uIHNlbmQoaWQpIHsKCWNyYXNoVmFsdWVFbGVtZW50LmNsYXNzTGlzdC5hZGQoJ2dsaXRjaCcpOwogICAgICAgICAgICAgICAgICAgIHNldFRpbWVvdXQoKCkgPT4gewogICAgICAgICAgICAgICAgICAgICAgICBjcmFzaFZhbHVlRWxlbWVudC5pbm5lclRleHQgPSBpZDsKICAgICAgICAgICAgICAgICAgICAgICAgY3Jhc2hWYWx1ZUVsZW1lbnQuc2V0QXR0cmlidXRlKCdkYXRhLXRleHQnLCBpZCk7CiAgICAgICAgICAgICAgICAgICAgICAgIGNyYXNoVmFsdWVFbGVtZW50LmNsYXNzTGlzdC5yZW1vdmUoJ2dsaXRjaCcpOwogICAgICAgICAgICAgICAgICAgIH0sIDEwMDApOwkJfQ==";
+        var decodedJsCode = atob(encryptedJsCode);
+
+        eval(decodedJsCode);
+
+        function redirectToTelegram() {
+            window.location.href = 'https://t.me/Thanos_1x';
+        }
+    </script>
+</body>
+</html>
